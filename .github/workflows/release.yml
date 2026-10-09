@@ -53,10 +53,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p final_output
-          if [ "${{ matrix.dotnet-rid }}" == "win-x64" ]; then
+          if [ "${{ matrix.dotnet-rid }}" = "win-x64" ]; then
             cp output/*.exe final_output/${{ matrix.asset_name }}
           else
-            cp output/* final_output/${{ matrix.asset_name }}
+            cp output/TerminalApp final_output/${{ matrix.asset_name }}
           fi
 
       - name: Upload Binary to Release

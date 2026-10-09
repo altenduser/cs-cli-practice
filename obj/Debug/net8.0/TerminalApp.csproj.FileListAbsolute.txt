@@ -1,0 +1,17 @@
+/home/undawn980/TerminalApp/bin/Debug/net8.0/TerminalApp
+/home/undawn980/TerminalApp/bin/Debug/net8.0/TerminalApp.deps.json
+/home/undawn980/TerminalApp/bin/Debug/net8.0/TerminalApp.runtimeconfig.json
+/home/undawn980/TerminalApp/bin/Debug/net8.0/TerminalApp.dll
+/home/undawn980/TerminalApp/bin/Debug/net8.0/TerminalApp.pdb
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.GeneratedMSBuildEditorConfig.editorconfig
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.AssemblyInfoInputs.cache
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.AssemblyInfo.cs
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.csproj.CoreCompileInputs.cache
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.dll
+/home/undawn980/TerminalApp/obj/Debug/net8.0/refint/TerminalApp.dll
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.pdb
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.genruntimeconfig.cache
+/home/undawn980/TerminalApp/obj/Debug/net8.0/ref/TerminalApp.dll
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.csproj.AssemblyReference.cache
+/home/undawn980/TerminalApp/bin/Debug/net8.0/NetCoreAudio.dll
+/home/undawn980/TerminalApp/obj/Debug/net8.0/TerminalApp.csproj.CopyComplete

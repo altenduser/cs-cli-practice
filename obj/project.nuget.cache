@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M3KCDGMWBcipFPsV/z6iz7bxYfgPv9P1EFwz85zCwOUDiBTX5L3gYnekYMo22h1R0+t5PZ+ZnNiL/JBRDw0XXw==",
+  "success": true,
+  "projectFilePath": "/home/undawn980/TerminalApp/TerminalApp.csproj",
+  "expectedPackageFiles": [
+    "/home/undawn980/.nuget/packages/netcoreaudio/2.0.1/netcoreaudio.2.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

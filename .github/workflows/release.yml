@@ -3,22 +3,38 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
 
 jobs:
   build:
-    name: Build and Release Binaries
-    runs-on: ubuntu-latest
+    name: Build for ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: write
 
     strategy:
       matrix:
         include:
-          - dotnet-rid: linux-x64
+          - name: Linux x64 (Mint, Arch, Ubuntu, etc.)
+            os: ubuntu-latest
+            dotnet-rid: linux-x64
             asset_name: cs-cli-linux-x64
-          - dotnet-rid: win-x64
+          - name: Linux ARM64
+            os: ubuntu-latest
+            dotnet-rid: linux-arm64
+            asset_name: cs-cli-linux-arm64
+          - name: Windows x64
+            os: windows-latest
+            dotnet-rid: win-x64
             asset_name: cs-cli-win-x64.exe
+          - name: macOS Intel
+            os: macos-latest
+            dotnet-rid: osx-x64
+            asset_name: cs-cli-macos-x64
+          - name: macOS Apple Silicon
+            os: macos-latest
+            dotnet-rid: osx-arm64
+            asset_name: cs-cli-macos-arm64
 
     steps:
       - name: Checkout Code
@@ -33,17 +49,19 @@ jobs:
         run: |
           dotnet publish -c Release -r ${{ matrix.dotnet-rid }} --self-contained true -p:PublishSingleFile=true -o output
 
-      - name: Rename Executable for Asset
+      - name: Prepare Asset
+        shell: bash
         run: |
+          mkdir -p final_output
           if [ "${{ matrix.dotnet-rid }}" == "win-x64" ]; then
-            mv output/*.exe output/${{ matrix.asset_name }}
+            cp output/*.exe final_output/${{ matrix.asset_name }}
           else
-            mv output/* output/${{ matrix.asset_name }}
+            cp output/* final_output/${{ matrix.asset_name }}
           fi
 
       - name: Upload Binary to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: output/${{ matrix.asset_name }}
+          files: final_output/${{ matrix.asset_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

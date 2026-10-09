@@ -1,0 +1,49 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build and Release Binaries
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    strategy:
+      matrix:
+        include:
+          - dotnet-rid: linux-x64
+            asset_name: cs-cli-linux-x64
+          - dotnet-rid: win-x64
+            asset_name: cs-cli-win-x64.exe
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Publish Binaries
+        run: |
+          dotnet publish -c Release -r ${{ matrix.dotnet-rid }} --self-contained true -p:PublishSingleFile=true -o output
+
+      - name: Rename Executable for Asset
+        run: |
+          if [ "${{ matrix.dotnet-rid }}" == "win-x64" ]; then
+            mv output/*.exe output/${{ matrix.asset_name }}
+          else
+            mv output/* output/${{ matrix.asset_name }}
+          fi
+
+      - name: Upload Binary to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/${{ matrix.asset_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
